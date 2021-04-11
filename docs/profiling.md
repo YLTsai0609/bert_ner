@@ -1,37 +1,3 @@
-# ENV
-
-cudatoolkit=10.2
-
-```
-+-----------------------------------------------------------------------------+
-| NVIDIA-SMI 440.100      Driver Version: 440.100      CUDA Version: 10.2     |
-|-------------------------------+----------------------+----------------------+
-| GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
-| Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
-|===============================+======================+======================|
-|   0  GeForce GTX 980 Ti  On   | 00000000:04:00.0 Off |                  N/A |
-| 20%   29C    P8    18W / 260W |      1MiB /  6083MiB |      0%      Default |
-+-------------------------------+----------------------+----------------------+
-
-+-----------------------------------------------------------------------------+
-| Processes:                                                       GPU Memory |
-|  GPU       PID   Type   Process name                             Usage      |
-|=============================================================================|
-|  No running processes found                                                 |
-+-----------------------------------------------------------------------------+
-
-```
-
-# Development time
-
-bert getting start cpu : 1hr
-
-gpu tf231 :  2 hr
-
-wandb : 1 hr
-
-fix bug(512 sequence length) : 2hr
-
 # Bert Model NER profling
 
 ## Data Samples
@@ -48,6 +14,10 @@ x[0]: ['就', '任', '州', '长', '的', '克', '林', '顿', '搬', '到', '�
 
 y[0]: ['O', 'O', 'O', 'O', 'O', 'B-PER', 'I-PER', 'I-PER', 'O', 'O', 'O', 'O', 'O', 'B-LOC', 'I-LOC', 'I-LOC', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O']
 
+## Target Distribution
+
+## Training config
+
 Model training time : 9 mins/epochs
 
 Training data size : 20864
@@ -57,3 +27,7 @@ Testing data size : 2318
 We're looking F1 score instead of accuracy
 
 F1-score : [check on monitor](https://wandb.ai/yltsai0609/bert-ner/runs/2hylsyy3/logs?workspace=user-yltsai0609)
+
+## Inference 
+
+## 
