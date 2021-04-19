@@ -42,17 +42,17 @@ def now():
 
 
 ############## limit gpu resource #############
-# gpus = tf.config.experimental.list_physical_devices("GPU")
-# print(gpus)
-# usage_gb = 2.5
-# tf.config.experimental.set_virtual_device_configuration(
-#    gpus[0],
-#    [tf.config.experimental.VirtualDeviceConfiguration(memory_limit=usage_gb * 1024)],
-# )
+gpus = tf.config.experimental.list_physical_devices("GPU")
+print(gpus)
+usage_gb = 4
+tf.config.experimental.set_virtual_device_configuration(
+    gpus[0],
+    [tf.config.experimental.VirtualDeviceConfiguration(memory_limit=usage_gb * 1024)],
+)
 
 ############ wandb setting ################
 
-os.environ["WANDB_MODE"] = "dryrun"
+# os.environ["WANDB_MODE"] = "dryrun"
 
 wandb.init(
     project="bert-ner",
@@ -78,16 +78,16 @@ print(
 )
 
 # ChineseDailyNerCorpus
-# train_x, train_y = ChineseDailyNerCorpus.load_data("train")
-# valid_x, valid_y = ChineseDailyNerCorpus.load_data("validate")
-# test_x, test_y = ChineseDailyNerCorpus.load_data("test")
+train_x, train_y = ChineseDailyNerCorpus.load_data("train")
+valid_x, valid_y = ChineseDailyNerCorpus.load_data("validate")
+test_x, test_y = ChineseDailyNerCorpus.load_data("test")
 
 # Or use your own corpus
-train_x = [["Hello", "world"], ["Hello", "Kashgari"], ["I", "love", "Beijing"]]
-train_y = [["O", "O"], ["O", "B-PER"], ["O", "O", "B-LOC"]]
+# train_x = [["Hello", "world"], ["Hello", "Kashgari"], ["I", "love", "Beijing"]]
+# train_y = [["O", "O"], ["O", "B-PER"], ["O", "O", "B-LOC"]]
 
-valid_x, valid_y = train_x, train_y
-test_x, test_x = train_x, train_y
+# valid_x, valid_y = train_x, train_y
+# test_x, test_x = train_x, train_y
 
 print(f"train data count: {len(train_x)}")
 print(f"validate data count: {len(valid_x)}")
@@ -132,7 +132,7 @@ model.fit(
 )
 
 
-result_alias = f"ner_{now()}"
+result_alias = f"ner_daily_news_{now()}"
 with open(PJ("expr_result", f"{result_alias}.json"), "w") as f:
     f.write(json.dumps(eval_callback.logs, indent=2))
 
